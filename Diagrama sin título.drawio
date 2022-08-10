@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-08-10T00:19:30.696Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36" etag="NTOC8ZawrEIACQ5yNIIu" version="20.2.3" type="github">
+<mxfile host="app.diagrams.net" modified="2022-08-10T00:23:10.539Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36" etag="3SDlZOIjxqeahSEh2mxN" version="20.2.3" type="github">
   <diagram id="UOKE7kFAYAQwSe17MQpH" name="Página-1">
     <mxGraphModel dx="1695" dy="425" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -50,7 +50,7 @@
         <mxCell id="Vtf5XBeM0CI9h4jYCUQP-28" value="Productos" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="330" y="210" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="Vtf5XBeM0CI9h4jYCUQP-30" value="Comentarios" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="Vtf5XBeM0CI9h4jYCUQP-30" value="Comentarios del producto" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="530" y="200" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="Vtf5XBeM0CI9h4jYCUQP-31" value="Carrito de compra del usuario" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
@@ -119,6 +119,9 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="Vtf5XBeM0CI9h4jYCUQP-75" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Vtf5XBeM0CI9h4jYCUQP-71" target="Vtf5XBeM0CI9h4jYCUQP-31">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Vtf5XBeM0CI9h4jYCUQP-80" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="Vtf5XBeM0CI9h4jYCUQP-71" target="Vtf5XBeM0CI9h4jYCUQP-72">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="Vtf5XBeM0CI9h4jYCUQP-71" value="Comprar" style="shape=rhombus;perimeter=rhombusPerimeter;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
