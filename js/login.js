@@ -1,11 +1,9 @@
 
-
-
 const alerta = document.getElementById("notificación");
 
 function showAlertError() {
 
-    alerta.innerHTML=  ` <div role="alert">
+    alerta.innerHTML=  ` <div role="alert" class="alert">
     <p>Los datos ingresados no cumplen con los requisitos solicitados</p>
   </div>`
 }
@@ -13,12 +11,12 @@ function showAlertError() {
 function comprobar(){
    
     var email = document.getElementById("email");
-    var contraseña = document.getElementById("password1");
+    var password1 = document.getElementById("password1");
     
    if ((password1.value.length === 0 )||( email.value.length === 0 )){
         showAlertError()
     } else {
-         location.href ="index.html";}
+         location.href ="homepage.html";}
        
     }
     
@@ -28,6 +26,4 @@ let ingreso = document.getElementById ("registrarse")
         comprobar();
     } )
 
-    /*function showAlertError() {
-    document.getElementById("alert-danger").classList.add("show");
-}*/
+    
