@@ -8,12 +8,15 @@ function showAlertError() {
   </div>`
 }
 
+var email = document.getElementById("email");
+var password1 = document.getElementById("password1");
+
 function comprobar(){
    
-    var email = document.getElementById("email");
-    var password1 = document.getElementById("password1");
+    emailValue = document.getElementById("email").value;
+    password1Value = document.getElementById("password1").value;
     
-   if ((password1.value.length === 0 )||( email.value.length === 0 )){
+   if ((password1Value.length === 0 )||( emailValue.length === 0 )){
         showAlertError()
     } else {
          location.href ="homepage.html";}
@@ -36,4 +39,15 @@ function onSignIn(googleUser) {
     console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
   }
 
+// Semana 2
+
+const inputText = document.getElementById("inputText");
+const buttonText = document.getElementById("buttonText");
+
+email.addEventListener("click", (evt) => {
+  // Si tenemos texto ingresado en el input, lo guardamos en el localStorage
+  if (email.value) {
+    localStorage.setItem("userName", email.value);
+  }
+});
 

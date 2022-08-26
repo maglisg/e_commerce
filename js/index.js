@@ -12,3 +12,13 @@ document.addEventListener("DOMContentLoaded", function(){
         window.location = "products.html"
     });
 });
+
+
+let acceder = localStorage.getItem("userName");
+
+let user = document.getElementById("user");
+var nuevoLi = document.createElement("p");
+nuevoLi.classList.add("active")
+nuevoLi.classList.add("nav-link")
+nuevoLi.innerHTML+=`${acceder}`
+user.appendChild(nuevoLi)
