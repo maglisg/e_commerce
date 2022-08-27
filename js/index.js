@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function(){
     });
 });
 
-
+// mostrar el email del usuario en la esquina superior
 let acceder = localStorage.getItem("userName");
 
 let user = document.getElementById("user");
