@@ -1,7 +1,7 @@
-//semana 2
-//acceder a el id de la categoria para rearmar la url
+
+
 let catId = localStorage.getItem("catID");
-const DATA_URL = (innerHTML = `${PRODUCTS_URL}${catId}${EXT_TYPE}`);
+const DATA_URL = (innerHTML = `${PRODUCTS_URL}${catId}${EXT_TYPE}`); //acceder a el id de la categoria para rearmar la url
 let container = document.getElementById("listado");
 var arrayProducts = [];
 
@@ -12,7 +12,7 @@ function titulo(data) {
   titulo.innerHTML = htmlContentToAppend;
 }
 
-function productos () {
+function elementsProducts () {
   let htmlContentToAppend = "";
   for (const elemento of arrayProducts){
     htmlContentToAppend += ` 
@@ -47,48 +47,56 @@ fetch(DATA_URL)
   .then((data) => {
     titulo(data);
     arrayProducts = data.products;
-    productos();
+    elementsProducts();
   });
 
 //fin fetch
 
 //Eventos de Orden y Filtrado
 
-let minCount = undefined;
-let maxCount = undefined;
+let min = undefined;
+let max = undefined;
 
-
-  document.getElementById("clearRangeFilter").addEventListener("click", function(){
-    document.getElementById("rangeFilterCountMin").value = "";
-    document.getElementById("rangeFilterCountMax").value = "";
-
-    minCount = undefined;
-    maxCount = undefined;
-
-    productos();
-});
 
 document.getElementById("rangeFilterCount").addEventListener("click", function(){
     //Obtengo el mínimo y máximo de los intervalos para filtrar por cantidad
     //de productos por categoría.
-    minCount = document.getElementById("rangeFilterCountMin").value;
-    maxCount = document.getElementById("rangeFilterCountMax").value;
+    let minCost = document.getElementById("rangeFilterCountMin").value;
+    let maxCost = document.getElementById("rangeFilterCountMax").value;
+    
+    if ((minCost != undefined) && (minCost != "") && (parseInt(minCost)) >= 0){
+      min = parseInt(minCost);
+  }
+  else{
+      min = undefined;
+  };
+  
+  if ((maxCost != undefined) && (maxCost != "") && (parseInt(maxCost)) >= 0){
+      max = parseInt(maxCost);
+  }
+  else{
+      max = undefined;
+  };
+  arrayProducts = arrayProducts.filter(value => (value.cost >= min && value.cost <= max));
+  console.log(arrayProducts);
+    elementsProducts()
+    
+});
 
-    if ((minCount != undefined) && (minCount != "") && (parseInt(minCount)) >= 0){
-        minCount = parseInt(minCount);
-    }
-    else{
-        minCount = undefined;
-    }
 
-    if ((maxCount != undefined) && (maxCount != "") && (parseInt(maxCount)) >= 0){
-        maxCount = parseInt(maxCount);
+document.getElementById("clearRangeFilter").addEventListener("click", function(){
+  getJSONData(DATA_URL).then(function(resultObj){
+    if (resultObj.status === "ok"){
+        arrayProducts = resultObj.data.products
+        elementsProducts();
     }
-    else{
-        maxCount = undefined;
-    }
+});
+document.getElementById("rangeFilterCountMin").value = "";
+document.getElementById("rangeFilterCountMax").value = "";
+console.log(arrayProducts);
+min = undefined;
+max= undefined;
 
-    productos();
 });
 
 
@@ -102,7 +110,7 @@ document.getElementById("sortAsc").addEventListener("click", function imprimir (
         .forEach((value) => {
           console.log(`${value.id}${value.name} ${value.cost}`);
         });
-  productos ();});
+        elementsProducts ();});
 
 document.getElementById("sortDesc").addEventListener("click", function imprimir (){
   arrayProducts
@@ -114,20 +122,20 @@ document.getElementById("sortDesc").addEventListener("click", function imprimir 
   .forEach((value) => {
     console.log(`${value.id}${value.name} ${value.cost}`);
   });
-productos ();
+  elementsProducts ();
 });
 
 document.getElementById("sortByCount").addEventListener("click", function(){
   arrayProducts
         .sort((a, b) => {
-          if (a.soldCount < b.soldCount) return -1;
-          if (a.soldCount > b.soldCount) return 1;
+          if (a.soldCount < b.soldCount) return 1;
+          if (a.soldCount > b.soldCount) return -1;
           return 0;
         })
         .forEach((value) => {
           console.log(`${value.id}${value.name} ${value.cost}`);
         });
-  productos ();
+  elementsProducts ();
 });
 
 
