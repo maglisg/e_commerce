@@ -1,10 +1,11 @@
 
 
-let catId = localStorage.getItem("catID");
-const DATA_URL = (innerHTML = `${PRODUCTS_URL}${catId}${EXT_TYPE}`); //acceder a el id de la categoria para rearmar la url
+let catId = localStorage.getItem("catID"); //acceder al id de la categoria en el localstore
+const DATA_URL = (innerHTML = `${PRODUCTS_URL}${catId}${EXT_TYPE}`); // rearmar la url
 let container = document.getElementById("listado");
 var arrayProducts = [];
 
+//función para el subtítulo
 function titulo(data) {
   let titulo = document.getElementById("titulo");
   let htmlContentToAppend = "";
@@ -12,6 +13,7 @@ function titulo(data) {
   titulo.innerHTML = htmlContentToAppend;
 }
 
+//función para publicar los productos
 function elementsProducts () {
   let htmlContentToAppend = "";
   for (const elemento of arrayProducts){
@@ -35,6 +37,8 @@ function elementsProducts () {
   }
 }
 
+console.log (arrayProducts)
+
 //fetch
 fetch(DATA_URL)
   .then((res) => {
@@ -51,8 +55,14 @@ fetch(DATA_URL)
   });
 
 //fin fetch
+//semana 3 
+function setCatID(id) {
+  localStorage.setItem("catIDProducts", id);
+  window.location = "product-info.html"
+}
 
-//Eventos de Orden y Filtrado
+
+//Evento de Filtrado
 
 let min = undefined;
 let max = undefined;
@@ -84,6 +94,7 @@ document.getElementById("rangeFilterCount").addEventListener("click", function()
 });
 
 
+//Evento para limpiar el filtrado y volver al todos los productos
 document.getElementById("clearRangeFilter").addEventListener("click", function(){
   getJSONData(DATA_URL).then(function(resultObj){
     if (resultObj.status === "ok"){
@@ -100,6 +111,7 @@ max= undefined;
 });
 
 
+//Eventos de orden.
 document.getElementById("sortAsc").addEventListener("click", function imprimir (){
   arrayProducts
         .sort((a, b) => {
@@ -138,6 +150,4 @@ document.getElementById("sortByCount").addEventListener("click", function(){
   elementsProducts ();
 });
 
-
-//Función imprimir
 

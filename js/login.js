@@ -41,10 +41,8 @@ function onSignIn(googleUser) {
 
 // Semana 2
 
-const inputText = document.getElementById("inputText");
-const buttonText = document.getElementById("buttonText");
 
-email.addEventListener("click", (evt) => {
+ingreso.addEventListener("click", (evt) => {
   // Si tenemos texto ingresado en el input, lo guardamos en el localStorage
   if (email.value) {
     localStorage.setItem("userName", email.value);
