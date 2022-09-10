@@ -55,6 +55,7 @@ fetch(DATA_URL)
   });
 
 //fin fetch
+
 //semana 3 
 function setCatID(id) {
   localStorage.setItem("catIDProducts", id);
