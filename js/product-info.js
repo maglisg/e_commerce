@@ -18,11 +18,12 @@ function imprimir() {
 
 function impImg() {
     let arrayImg = array.images
-  for (let imagenes in arrayImg) {
-    imag.innerHTML += `<div >
-                        <img src="${imagenes.images}">
-                     </div>`
+    let htmlContentToAppend = ""
+  for (var i = 0; i < arrayImg.length; i++) {
+    htmlContentToAppend += `<img  id="imgn" src="${arrayImg[i]}" class="card mb-4 col-10">
+`
   };
+  imag.innerHTML = htmlContentToAppend
 }
 
 getJSONData(DATA).then(function (resultObj) {
@@ -32,4 +33,3 @@ getJSONData(DATA).then(function (resultObj) {
     impImg();
   }
 });
-

@@ -188,3 +188,17 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+
+#titulo { 
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#imgn {
+  max-width: 24%;
+  max-height: 24%;
+  display: inline-block;
+  ;
+}
+  
