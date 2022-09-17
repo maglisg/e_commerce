@@ -15,6 +15,7 @@
     <link href="css/font-awesome.min.css" rel="stylesheet" />
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
 
   <body>
@@ -49,17 +50,38 @@
     </nav>
     <main>
       <div class="container">
-        <div id="titulo">
-        </div>
-        <hr> 
+        <div id="titulo"></div>
+        <hr />
         <div id="cuerpo">
-          <div id="precio"> <b>Precio:</b></div>
-          <div id="descripción"><b>Descripción:</b> </div>
-          <div id="categoria"> <b>Categorias:</b></div>
-          <div id="cantidad"> <b>Cantidad de vendidos:</b></div>
-          <div ><b>imagenes ilustrativas:</b>
-              <p id="imagenes">
-              </p>
+          <div id="precio"><b>Precio:</b></div>
+          <div id="descripción"><b>Descripción:</b></div>
+          <div id="categoria"><b>Categorias:</b></div>
+          <div id="cantidad"><b>Cantidad de vendidos:</b></div>
+          <div>
+            <b>imagenes ilustrativas:</b>
+            <p id="imagenes"></p>
+          </div>
+          <hr />
+          <div>
+            <h2>Comentarios:</h2>
+            <div id="comments"></div>
+          </div>
+          <hr/>
+          <div>
+            <h3> Comentar:</h3>
+            <label for="coment"><h5>Tu opinión:</h5></label> 
+            <br>
+            <input type="text" id="coment" size=40 style="width:400px; height: 100px;"/> 
+            <br>
+            <select name="calificar" id="qualify">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select> 
+            <br>
+            <input type="submit" value="Enviar"/>
           </div>
         </div>
       </div>
