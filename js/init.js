@@ -39,3 +39,13 @@ let getJSONData = function(url){
         return result;
     });
 }
+
+// mostrar el email del usuario en la esquina superior
+let acceder = localStorage.getItem("userName");
+
+let user = document.getElementById("user");
+var nuevoLi = document.createElement("p");
+nuevoLi.classList.add("active")
+nuevoLi.classList.add("nav-link")
+nuevoLi.innerHTML+=`${acceder}`
+user.appendChild(nuevoLi)

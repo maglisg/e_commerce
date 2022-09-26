@@ -81,3 +81,29 @@ getJSONData(DATA_inf).then(function (resultObj) {
     impCom();
   }
 });
+
+// desafíate semana 3
+function newCom() {
+let usuario = localStorage.getItem("userName");
+let comentario = document.getElementById("coment").value;
+let calificacion = document.getElementById("qualify").value;
+let fechaHora = new Date;
+let htmlContentToAppend = "";
+  htmlContentToAppend += ` 
+      <div class="row list-group-item list-group-item-action cursor-active">
+          <div>
+              <p><b>${usuario}</b> ${fechaHora.getFullYear()}-${fechaHora.getMonth()}-${fechaHora.getDate()} ${fechaHora.getHours()}:${fechaHora.getMinutes()}:${fechaHora.getSeconds()}   ${impStar(calificacion)}${starB(calificacion)}
+              </p>
+            </div>
+          <div class="col">
+              <p class="mb-1">${comentario}</p>
+          </div>
+      </div>
+  `;
+
+comments.innerHTML += htmlContentToAppend;
+}
+
+document.getElementById("enviar").addEventListener("click", function(){
+  newCom()
+})
