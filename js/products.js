@@ -18,7 +18,7 @@ function elementsProducts () {
   let htmlContentToAppend = "";
   for (const elemento of arrayProducts){
     htmlContentToAppend += ` 
-       <div onclick="setCatID(${elemento.id})" class="list-group-item list-group-item-action cursor-active">
+       <div onclick="setProdID(${elemento.id})" class="list-group-item list-group-item-action cursor-active">
            <div class="row">
                <div class="col-3">
                    <img src="${elemento.image}" alt="${elemento.description}" class="img-thumbnail">
@@ -57,7 +57,7 @@ fetch(DATA_URL)
 //fin fetch
 
 //semana 3 
-function setCatID(id) {
+function setProdID(id) {
   localStorage.setItem("catIDProducts", id);
   window.location = "product-info.html"
 }
