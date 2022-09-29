@@ -78,18 +78,16 @@ function impProductosRelacionados() {
   relacionados = array.relatedProducts;
   for (var i = 0; i < relacionados.length; i++) {
     htmlContentToAppend += ` 
-         <div onclick="setReltID(${relacionados[i].id})" class="list-group-item a.custom-card card mb-4 cursor-active">
-             <div>
-               <p> <img  id="imgn" src="${relacionados[i].image}" class="mb-4 col-10" > 
-               </p>
-             </div>
-           <div>
-               <p class="mb-1">${relacionados[i].name}</p>
-           </div>
-       </div> ` 
+       <div class="card ursor-active card-body mb-4 col-10 justify-content-align-content-around" onclick="setReltID(${relacionados[i].id})">
+                <img  id="imgn" src="${relacionados[i].image}" class="card-img">  
+                <h5 class="card-title justify-content-lg-center">${relacionados[i].name}</h5>
+       </div>
+       ` 
+
   prodRela.innerHTML = htmlContentToAppend;
 };
 }
+
 
 
 getJSONData(DATA).then(function (resultObj) {
