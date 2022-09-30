@@ -40,7 +40,7 @@ let getJSONData = function(url){
     });
 }
 
-// mostrar el email del usuario en la esquina superior
+// mostrar el email del usuario en la esquina superior con un menu desplegable
 let acceder = localStorage.getItem("userName");
 
 let user = document.getElementById("user");
