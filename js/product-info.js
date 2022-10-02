@@ -20,15 +20,24 @@ function imprimir() {
   cat.innerHTML += `<p>${array.category}</p>`;
   cant.innerHTML += `<p>${array.soldCount}</p>`;
 }
-
+//<img  id="imgn" src="${arrayImg[i]}" class="card mb-4 col-10">
 function impImg() {
   let arrayImg = array.images;
   let imagenes = "";
+  let imagenes2 = "";
   for (var i = 0; i < arrayImg.length; i++) {
-    imagenes += `<img  id="imgn" src="${arrayImg[i]}" class="card mb-4 col-10">
-`;
-  }
-  imag.innerHTML = imagenes;
+    imagenes = `
+    <div class="carousel-item active">
+                  <img src="${arrayImg[0]}" class="d-block w-100" alt="...">
+                </div>
+`; };
+for (var j = 1; j < arrayImg.length; j++) {
+imagenes2+= `
+              <div class="carousel-item">
+               <img src="${arrayImg[j]}" class="d-block w-100" alt="...">
+              </div>`
+  };
+  imag.innerHTML += imagenes + imagenes2;
 }
 
 function impStar(myTotal) {
