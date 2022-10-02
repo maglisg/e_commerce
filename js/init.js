@@ -43,6 +43,10 @@ let getJSONData = function(url){
 // mostrar el email del usuario en la esquina superior con un menu desplegable
 let acceder = localStorage.getItem("userName");
 
+function borrarLocal (){
+  localStorage.clear()
+}
+
 let user = document.getElementById("user");
   let htmlContentToAppend ="";
 var nuevoLi = document.createElement("p");
@@ -57,7 +61,7 @@ htmlContentToAppend+=`
                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                       <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
                       <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
-                      <li><a class="dropdown-item" href="index.html">Cerrar sesion </a></li>
+                      <li><a class="dropdown-item" onclick="borrarLocal()" href="index.html">Cerrar sesion </a></li>
                     </ul>
                   </li>
             </div>
