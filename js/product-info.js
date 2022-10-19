@@ -8,21 +8,21 @@ let cat = document.getElementById("categoria");
 let cant = document.getElementById("cantidad");
 let imag = document.getElementById("imagenes");
 let comments = document.getElementById("comments");
-let array = {};
-let arrayInf = {};
+let Obj = {};
 let prodRela = document.getElementById("productosRelacionados");
 
 
+//Cargar nombre y demás datos 
 function imprimir() {
-  title.innerHTML = `<h1>${array.name}</h1>`;
-  precio.innerHTML += `<p>${array.currency} ${array.cost}</p>`;
-  desc.innerHTML += `<p>${array.description}</p>`;
-  cat.innerHTML += `<p>${array.category}</p>`;
-  cant.innerHTML += `<p>${array.soldCount}</p>`;
+  title.innerHTML = `<h1>${Obj.name}</h1>`;
+  precio.innerHTML += `<p>${Obj.currency} ${Obj.cost}</p>`;
+  desc.innerHTML += `<p>${Obj.description}</p>`;
+  cat.innerHTML += `<p>${Obj.category}</p>`;
+  cant.innerHTML += `<p>${Obj.soldCount}</p>`;
 }
-//<img  id="imgn" src="${arrayImg[i]}" class="card mb-4 col-10">
+//Función para imprimir las imagenes en el carrusel
 function impImg() {
-  let arrayImg = array.images;
+  let arrayImg = Obj.images;
   let imagenes = "";
   let imagenes2 = "";
   for (var i = 0; i < arrayImg.length; i++) {
@@ -84,7 +84,7 @@ function setReltID(numero) {
 let relacionados = [];
 function impProductosRelacionados() {
   let htmlContentToAppend = "";
-  relacionados = array.relatedProducts;
+  relacionados = Obj.relatedProducts;
   for (var i = 0; i < relacionados.length; i++) {
     htmlContentToAppend += ` 
     <div onclick="setReltID(${relacionados[i].id})"  class="card" style="width: 300px">
@@ -103,7 +103,7 @@ function impProductosRelacionados() {
 
 getJSONData(DATA).then(function (resultObj) {
   if (resultObj.status === "ok") {
-    array = resultObj.data;
+    Obj = resultObj.data;
     imprimir();
     impImg();
     impProductosRelacionados();
@@ -147,3 +147,24 @@ function newCom() {
 document.getElementById("enviar").addEventListener("click", function () {
   newCom();
 });
+
+//desafiate semana 5 (enviar un producto al carrito de compras del localStore)
+
+let arrayCarrito = [];
+function CrearArrEnLocal(){
+  if(localStorage.getItem("Productos_para_el_carrito")==null){
+    arrayCarrito.push(Obj)
+    localStorage.setItem("Productos_para_el_carrito", JSON.stringify(arrayCarrito))
+  }
+  else{
+    let arrayCarrito = JSON.parse(localStorage.getItem("Productos_para_el_carrito"))
+    arrayCarrito.push(Obj)
+    localStorage.setItem("Productos_para_el_carrito", JSON.stringify(arrayCarrito))
+  }
+}
+  
+document.getElementById("comprar").addEventListener("click", function(){
+  CrearArrEnLocal();
+})
+
+

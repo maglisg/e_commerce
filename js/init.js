@@ -71,4 +71,3 @@ htmlContentToAppend+=`
 `
 nuevoLi.innerHTML = htmlContentToAppend;
 user.appendChild(nuevoLi); 
-
