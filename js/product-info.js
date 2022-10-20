@@ -150,21 +150,34 @@ document.getElementById("enviar").addEventListener("click", function () {
 
 //desafiate semana 5 (enviar un producto al carrito de compras del localStore)
 
+let productCarr = {};
+
+
+
 let arrayCarrito = [];
 function CrearArrEnLocal(){
+  productCarr = {
+    "id": Obj.id ,
+  "name": Obj.name ,
+  "count": 1,
+  "unitCost": Obj.cost,
+  "currency": Obj.currency ,
+  "image": Obj.images[0]
+}
   if(localStorage.getItem("Productos_para_el_carrito")==null){
-    arrayCarrito.push(Obj)
+    arrayCarrito.push(productCarr)
     localStorage.setItem("Productos_para_el_carrito", JSON.stringify(arrayCarrito))
   }
   else{
     let arrayCarrito = JSON.parse(localStorage.getItem("Productos_para_el_carrito"))
-    arrayCarrito.push(Obj)
+    arrayCarrito.push(productCarr)
     localStorage.setItem("Productos_para_el_carrito", JSON.stringify(arrayCarrito))
   }
 }
   
 document.getElementById("comprar").addEventListener("click", function(){
   CrearArrEnLocal();
+  console.log(productCarr);
 })
 
 
