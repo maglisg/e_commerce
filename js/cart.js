@@ -51,11 +51,12 @@ let celdasPrecio = document.getElementsByClassName("SubResult");
 for (let i=0; i<celdasPrecio.length; ++i){
  subtotalPrecio += parseFloat(celdasPrecio[i].firstChild.data);
 }; 
-document.getElementById("subTotalPor").innerHTML= `USD ${subtotalPrecio}`;
 resultado = Math.round(comissionPercentage * subtotalPrecio);
-document.getElementById("porcenEnvio").innerHTML = `USD ${resultado}`;
 total = (resultado + subtotalPrecio);
+document.getElementById("subTotalPor").innerHTML= `USD ${subtotalPrecio}`;
+document.getElementById("porcenEnvio").innerHTML = `USD ${resultado}`;
 document.getElementById("Total").innerHTML = `<b>USD ${total}</b>`
+
 }
 
 
@@ -68,18 +69,23 @@ document.addEventListener("DOMContentLoaded", function () {
 document.getElementById("premium").addEventListener("change", function(){
  comissionPercentage = 0.15;
  calcularSubtotal()
+ document.getElementById("feedback").innerHTML = ""
 });
 
 document.getElementById("express").addEventListener("change", function(){
   comissionPercentage = 0.07;
   calcularSubtotal()
+  document.getElementById("feedback").innerHTML = ""
 });
 
 document.getElementById("standard").addEventListener("change", function(){
   comissionPercentage = 0.05;
   calcularSubtotal()
+
+  document.getElementById("feedback").innerHTML = ""
 });
 
+//JSON del artículo precargado
 getJSONData(DATA).then(function (resultObj) {
   if (resultObj.status === "ok") {
     ObjCarrito = resultObj.data;
@@ -87,3 +93,40 @@ getJSONData(DATA).then(function (resultObj) {
     ImpCarrito(ObjelemeArt);
   }
 });
+
+//Deshabiliar y habilitar input del modal
+document.getElementById("Tarjeta").addEventListener("change", function(){
+document.getElementById("cuenta").setAttribute("disabled", "");
+document.getElementById("vencimiento").removeAttribute("disabled", "")
+document.getElementById("NumTarj").removeAttribute("disabled", "")
+document.getElementById("numCod").removeAttribute("disabled", "")
+document.getElementById("feed-back").innerHTML =""
+});
+
+document.getElementById("Transferencia").addEventListener("change", function(){
+  document.getElementById("vencimiento").setAttribute("disabled", "")
+  document.getElementById("NumTarj").setAttribute("disabled", "")
+  document.getElementById("numCod").setAttribute("disabled", "")
+  document.getElementById("cuenta").removeAttribute("disabled", "");
+  document.getElementById("feed-back").innerHTML = ""
+})
+
+//Validar formulario
+document.getElementById("formulario").addEventListener("submit", function(event){
+  let hasError = false
+  document.getElementById("formulario").classList.add("was-validated")
+   if(!document.querySelector('input[name="envio"]:checked')){
+    document.getElementById("feedback").innerHTML = `<div style="color: red;">Debe seleccionar un tipo de envío.</div>`
+    hasError = true
+   }
+
+   if(!document.querySelector('input[name="FormaDePago"]:checked')){
+    document.getElementById("feed-back").innerHTML = `<div style="color: red;">Debe seleccionar una forma de pago.</div>`
+    hasError = true
+    } 
+   if(hasError) {
+    event.preventDefault()
+  } else{
+   document.getElementById("alert-success").classList.add("show")}
+})
+
