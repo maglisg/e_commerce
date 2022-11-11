@@ -1,22 +1,27 @@
-
-
 let catId = localStorage.getItem("catID"); //acceder al id de la categoria en el localstore
 const DATA_URL = (innerHTML = `${PRODUCTS_URL}${catId}${EXT_TYPE}`); // rearmar la url
 let container = document.getElementById("listado");
-var arrayProducts = [];
+let arrayProducts = [];
+let title = document.getElementById("titulo");
+let filterCount = document.getElementById("rangeFilterCount");
+let clearFilter = document.getElementById("clearRangeFilter");
+let sortAsc = document.getElementById("sortAsc");
+let sortDesc = document.getElementById("sortDesc");
+let sortByCount =document.getElementById("sortByCount");
+let searchValue = document.getElementById("searchValue");
+let btnSearch = document.getElementById("search");
 
 //función para el subtítulo
 function titulo(data) {
-  let titulo = document.getElementById("titulo");
   let htmlContentToAppend = "";
   htmlContentToAppend += `<h4> Verás aqui todos los productos de la categoria ${data.catName} </h4> `;
-  titulo.innerHTML = htmlContentToAppend;
+  title.innerHTML = htmlContentToAppend;
 }
 
 //función para publicar los productos
-function elementsProducts () {
+function elementsProducts(data) {
   let htmlContentToAppend = "";
-  for (const elemento of arrayProducts){
+  for (const elemento of data) {
     htmlContentToAppend += ` 
        <div onclick="setProdID(${elemento.id})" class="list-group-item list-group-item-action cursor-active">
            <div class="row">
@@ -37,8 +42,6 @@ function elementsProducts () {
   }
 }
 
-console.log (arrayProducts)
-
 //fetch
 fetch(DATA_URL)
   .then((res) => {
@@ -51,104 +54,104 @@ fetch(DATA_URL)
   .then((data) => {
     titulo(data);
     arrayProducts = data.products;
-    elementsProducts();
+    elementsProducts(arrayProducts);
   });
 
-//fin fetch
-
-//semana 3 
+//Guardar el id del producto en el localStore  y abrir la ventana de información del producto
 function setProdID(id) {
   localStorage.setItem("catIDProducts", id);
-  window.location = "product-info.html"
+  window.location = "product-info.html";
 }
 
-
-//Evento de Filtrado
+//Eventos de Filtrado
 
 let min = undefined;
 let max = undefined;
 
-
-document.getElementById("rangeFilterCount").addEventListener("click", function(){
+filterCount.addEventListener("click", function () {
     //Obtengo el mínimo y máximo de los intervalos para filtrar por cantidad
     //de productos por categoría.
     let minCost = document.getElementById("rangeFilterCountMin").value;
     let maxCost = document.getElementById("rangeFilterCountMax").value;
-    
-    if ((minCost != undefined) && (minCost != "") && (parseInt(minCost)) >= 0){
+
+    if (minCost != undefined && minCost != "" && parseInt(minCost) >= 0) {
       min = parseInt(minCost);
-  }
-  else{
+    } else {
       min = undefined;
-  };
-  
-  if ((maxCost != undefined) && (maxCost != "") && (parseInt(maxCost)) >= 0){
-      max = parseInt(maxCost);
-  }
-  else{
-      max = undefined;
-  };
-  arrayProducts = arrayProducts.filter(value => (value.cost >= min && value.cost <= max));
-  console.log(arrayProducts);
-    elementsProducts()
-    
-});
-
-
-//Evento para limpiar el filtrado y volver al todos los productos
-document.getElementById("clearRangeFilter").addEventListener("click", function(){
-  getJSONData(DATA_URL).then(function(resultObj){
-    if (resultObj.status === "ok"){
-        arrayProducts = resultObj.data.products
-        elementsProducts();
     }
-});
-document.getElementById("rangeFilterCountMin").value = "";
-document.getElementById("rangeFilterCountMax").value = "";
-console.log(arrayProducts);
-min = undefined;
-max= undefined;
 
-});
+    if (maxCost != undefined && maxCost != "" && parseInt(maxCost) >= 0) {
+      max = parseInt(maxCost);
+    } else {
+      max = undefined;
+    }
+    arrayProducts = arrayProducts.filter(
+      (value) => value.cost >= min && value.cost <= max
+    );
+    elementsProducts(arrayProducts);
+  });
 
+//Evento para limpiar el filtrado y volver a todos los productos
+
+clearFilter.addEventListener("click", function () {
+    getJSONData(DATA_URL).then(function (resultObj) {
+      if (resultObj.status === "ok") {
+        arrayProducts = resultObj.data.products;
+        elementsProducts(arrayProducts);
+      }
+    });
+    document.getElementById("rangeFilterCountMin").value = "";
+    document.getElementById("rangeFilterCountMax").value = "";
+    min = undefined;
+    max = undefined;
+  });
 
 //Eventos de orden.
-document.getElementById("sortAsc").addEventListener("click", function imprimir (){
-  arrayProducts
-        .sort((a, b) => {
-          if (a.cost < b.cost) return -1;
-          if (a.cost > b.cost) return 1;
-          return 0;
-        })
-        .forEach((value) => {
-          console.log(`${value.id}${value.name} ${value.cost}`);
-        });
-        elementsProducts ();});
 
-document.getElementById("sortDesc").addEventListener("click", function imprimir (){
-  arrayProducts
-  .sort((a, b) => {
-    if (a.cost < b.cost) return 1;
-    if (a.cost > b.cost) return -1;
-    return 0;
-  })
-  .forEach((value) => {
-    console.log(`${value.id}${value.name} ${value.cost}`);
+  sortAsc.addEventListener("click", function imprimir() {
+    arrayProducts.sort((a, b) => {
+      if (a.cost < b.cost) return -1;
+      if (a.cost > b.cost) return 1;
+      return 0;
+    });
+    elementsProducts(arrayProducts);
   });
-  elementsProducts ();
+
+  sortDesc.addEventListener("click", function imprimir() {
+    arrayProducts.sort((a, b) => {
+      if (a.cost < b.cost) return 1;
+      if (a.cost > b.cost) return -1;
+      return 0;
+    });
+    elementsProducts(arrayProducts);
+  });
+
+  sortByCount.addEventListener("click", function () {
+  arrayProducts.sort((a, b) => {
+    if (a.soldCount < b.soldCount) return 1;
+    if (a.soldCount > b.soldCount) return -1;
+    return 0;
+  });
+  elementsProducts(arrayProducts);
 });
 
-document.getElementById("sortByCount").addEventListener("click", function(){
-  arrayProducts
-        .sort((a, b) => {
-          if (a.soldCount < b.soldCount) return 1;
-          if (a.soldCount > b.soldCount) return -1;
-          return 0;
-        })
-        .forEach((value) => {
-          console.log(`${value.id}${value.name} ${value.cost}`);
-        });
-  elementsProducts ();
+//input de busqueda
+btnSearch.addEventListener("click", () => {
+  let search = searchValue.value;
+  if (!search) return alert("El campo de busqueda esta vacio!");
+  productosRelacionados = [];
+  for (let i = 0; i < arrayProducts.length; i++) {
+    let name = arrayProducts[i].name;
+    let description = arrayProducts[i].description;
+
+    //el includes está para que se fije si el título INCLUYE la busqueda, porque puede ser solo una parte del título
+
+    if (
+      name.toLowerCase().includes(search) ||
+      description.toLowerCase().includes(search)
+    )
+      productosRelacionados.push(arrayProducts[i]);
+  }
+  ;
+  elementsProducts(productosRelacionados);
 });
-
-

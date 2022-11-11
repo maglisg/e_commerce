@@ -51,10 +51,64 @@
     </div>
   </nav>
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+    <div class="container row text-break">
+      <h1 class="col-lg-9 align-self-center">Perfil</h1>
+      <img id="img" alt="foto de perfil" class="img-thumbnail col-lg-3" style="max-width: 20%"/>
+   <hr>
+   <form action="">
+    <div class="row g-3">
+    <div class="col-sm-6">
+      <label for="firstname" class="form-label">Primer Nombre</label>
+      <input type="text" class="form-control" id="firstname" size="40" required>
+      <div class="valid-feedback"></div>
+      <div class="invalid-feedback">Debe ingresar una calle.</div>
+    </div>
+
+    <div class="col-sm-6">
+      <label for="secondname" class="form-label">Segundo nombre</label>
+      <input type="text" class="form-control" id="secondname" size="40" required>
+      <div class="valid-feedback"></div>
+      <div class="invalid-feedback">Debe ingresar el número.</div>
+    </div>
+    </div>
+    <div class="row g-3">
+      <div class="col-sm-6">
+        <label for="firstLastname" class="form-label">Primer apellido</label>
+        <input type="text" class="form-control" id="firstLastname" size="40" required>
+        <div class="valid-feedback"></div>
+        <div class="invalid-feedback">Debe ingresar su primer Nombre.</div>
       </div>
+  
+      <div class="col-sm-6">
+        <label for="secondLastname" class="form-label">Segundo apellido</label>
+        <input type="text" class="form-control" id="secondLastname" size="40" required>
+        <div class="valid-feedback"></div>
+        <div class="invalid-feedback">Debe ingresar su segundo nombre.</div>
+      </div>
+      </div>
+      <div class="row g-3">
+        <div class="col-sm-6">
+          <label for="email" class="form-label">Email</label>
+          <input type="text" class="form-control" id="email" size="40" required>
+          <div class="valid-feedback"></div>
+          <div class="invalid-feedback">Debe ingresar una calle.</div>
+        </div>
+        <div class="col-sm-6"> 
+          <label for="archivo" class="form-label">Subir archivo</label>
+          <input type="file" id="file" class="hidden form-control" accept="image/*" /> 
+        </div>
+       </div>
+        <div class="row g-3">
+         <div class="col-sm-6">
+          <label for="phone" class="form-label">Teléfono de contacto</label>
+          <input type="text" class="form-control" id="phone" size="40" required>
+          <div class="valid-feedback"></div>
+          <div class="invalid-feedback">Debe ingresar el número.</div>
+        </div> 
+        </div>
+        <hr>
+        <input type="input" class="btn btn-primary" id="save" value="Guardar cambios">
+   </form>
     </div>
   </main>
   <footer class="text-muted">

@@ -49,17 +49,22 @@
       </div>
     </nav>
     <main>
-      <div class="container">
-        <span id="titulo"></span><input type="submit" value="Comprar" id="comprar" style="color:azure; border-color: #229fbc; background-color: #229fbc;" >
+      <div class="container ">
+<div class="row">
+<span id="titulo" class="col-sm-8"></span>
+<p class="col-sm-4 align-content-center">
+  <input type="submit" value="Comprar" id="comprar" class="btn btn-info m-3 text-end btn-lg" >
+</p>
+
+</div>
         <hr />
         <div id="cuerpo">
-          <div id="precio"><b>Precio:</b></div>
-          <div id="descripción"><b>Descripción:</b></div>
-          <div id="categoria"><b>Categorias:</b></div>
-          <div id="cantidad"><b>Cantidad de vendidos:</b></div>
+          <h4 id="precio"><b>Precio:</b></h4>
+          <h4 id="descripción"><b>Descripción:</b></h4>
+          <h4 id="categoria"><b>Categorias:</b></h4>
+          <h4 id="cantidad"><b>Cantidad de vendidos:</b></h4>
           <div>
-            <b>imagenes ilustrativas:</b>
-            <br>
+            <h4><b>imagenes ilustrativas:</b></h4>
             <br>
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" style="width: 80%; text-align: center;">
               <div class="carousel-inner" id="imagenes">
@@ -99,11 +104,11 @@
             </select> 
             <br>
             <br>
-            <input type="submit"  id="enviar" value="Enviar" style="color: white; border-color: #229fbc; background-color: #229fbc;"/>
+            <input type="submit"  id="enviar" value="Enviar" class="btn btn-info btn-lg"/>
           </div>
           <br>
           <h4>Productos Relacionados:</h4>
-          <div class="row" id="productosRelacionados">
+          <div class="row card-deck" id="productosRelacionados">
 
           </div>
         </div>

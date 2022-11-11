@@ -63,11 +63,11 @@ function impCom() {
     htmlContentToAppend += ` 
         <div class="row list-group-item list-group-item-action cursor-active">
             <div>
-                <p><b>${elemento.user}</b>  ${elemento.dateTime}   ${impStar(star)}${starB(star)}
-                </p>
+                <h5><b>${elemento.user}</b>  ${elemento.dateTime}   ${impStar(star)}${starB(star)}
+                </h5>
               </div>
             <div class="col">
-                <p class="mb-1">${elemento.description}</p>
+                <h5 class="mb-1">${elemento.description}</h5>
             </div>
         </div>
     `;
@@ -87,8 +87,8 @@ function impProductosRelacionados() {
   relacionados = Obj.relatedProducts;
   for (var i = 0; i < relacionados.length; i++) {
     htmlContentToAppend += ` 
-    <div onclick="setReltID(${relacionados[i].id})"  class="card" style="width: 300px">
-    <img src="${relacionados[i].image}" class="card-img-top" alt="...">
+  <div onclick="setReltID(${relacionados[i].id})" class="card col-4 offset-1">
+  <img src="${relacionados[i].image}" class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">${relacionados[i].name}</h5>
     </div>

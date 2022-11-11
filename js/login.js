@@ -1,31 +1,29 @@
 
 const alerta = document.getElementById("notificación");
+let email = document.getElementById("email");
+let password1 = document.getElementById("password1");
+let ingreso = document.getElementById ("registrarse");
 
 function showAlertError() {
-
-    alerta.innerHTML=  ` <div role="alert" class="alert">
-    <p>Los datos ingresados no cumplen con los requisitos solicitados</p>
-  </div>`
-}
-
-var email = document.getElementById("email");
-var password1 = document.getElementById("password1");
+    alerta.innerHTML=  `
+  <div class="alert show alert-success alert-dismissible fade" role="alert" >
+  <p>Los datos ingresados no cumplen con los requisitos solicitados</p>
+</div>`
+};
 
 function comprobar(){
    
-    emailValue = document.getElementById("email").value;
-    password1Value = document.getElementById("password1").value;
+    emailValue = email.value;
+    password1Value = password1.value;
     
    if ((password1Value.length === 0 )||( emailValue.length === 0 )){
         showAlertError()
     } else {
          location.href ="homepage.html";}
        
-    }
+    };
     
-
-let ingreso = document.getElementById ("registrarse")
-    ingreso.addEventListener ("click", function (){
+ingreso.addEventListener ("click", function (){
         comprobar();
     } )
 
@@ -39,11 +37,9 @@ function onSignIn(googleUser) {
     console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
   }
 
-// Semana 2
 
-
-ingreso.addEventListener("click", (evt) => {
-  // Si tenemos texto ingresado en el input, lo guardamos en el localStorage
+// Si tenemos email ingresado en el input, lo guardamos en el localStorage
+ingreso.addEventListener("click", (evt) => { 
   if (email.value) {
     localStorage.setItem("userName", email.value);
   }
