@@ -170,14 +170,21 @@ function CrearArrEnLocal(){
   }
   else{
     let arrayCarrito = JSON.parse(localStorage.getItem("Productos_para_el_carrito"))
-    arrayCarrito.push(productCarr)
+    for (elemento of arrayCarrito){
+      if(elemento.id == productCarr.id){
+        elemento.count = elemento.count + 1
+        arrayCarrito.push(productCarr)
     localStorage.setItem("Productos_para_el_carrito", JSON.stringify(arrayCarrito))
+      } else {
+      arrayCarrito.push(productCarr)
+    localStorage.setItem("Productos_para_el_carrito", JSON.stringify(arrayCarrito))
+      }
+    }
   }
 }
   
 document.getElementById("comprar").addEventListener("click", function(){
   CrearArrEnLocal();
-  console.log(productCarr);
 })
 
 
