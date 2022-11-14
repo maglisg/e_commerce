@@ -17,7 +17,7 @@ function CrearUsuario() {
   let accederEmail = localStorage.getItem("userName");
   if (!localStorage.getItem("userData")) {
     Inputemail.value = accederEmail;
-    imagen.src = "../../img/imagen_usuario_defecto.jpg"
+    imagen.src = "e_commerce/img/imagen_usuario_defecto.jpg"
   } else {
     let Data = JSON.parse(localStorage.getItem("userData"));
     Inputfirstname.value = Data.firstname
